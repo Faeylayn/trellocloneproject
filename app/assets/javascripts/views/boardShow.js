@@ -1,7 +1,8 @@
 TrelloClone.Views.BoardShow = Backbone.View.extend({
   events: {
     "click button.delete": "killBoard",
-    "click button.delete-comment": "deleteComment"
+    "click button.delete-comment": "deleteComment",
+    "click a.add-card": "newCard"
   },
 
 
@@ -34,6 +35,7 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
     //   }.bind(this))
     var content = JST.list_list({list: list})
     $(".list-list").append(content)
+
   },
 
   addDelete: function () {
@@ -47,7 +49,21 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
   },
 
   deleteComment: function () {
+    var card = new TrelloClone.Models.Card({ id: $(event.target).data("id") })
+    card.destroy({
+    success: function () {this.render();}.bind(this)
+  })
 
-  }
+},
+
+  newCard: function () {
+    event.preventDefault();
+
+    var new_card = new TrelloClone.Views.cardNew();
+    $(".display").append(new_card.$el);
+    new_card.render();
+
+  },
+
 
 })

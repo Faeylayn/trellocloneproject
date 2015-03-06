@@ -1,13 +1,14 @@
 <li class='list-list-item'> <%=list.escape("title")%>
 
   <ul class='card-list'>
-  <% list.cards().each(function(card) { %>
-    <li> <%= card.escape("title") %> </li>
-    <button class='delete-comment'> Delete </button>
 
-  <%})%>
+  <% list.cards().each(function(card) {  %>
+    <li data-id="<%=card.id%>"> <%= card.escape("title") %> </li>
+    <button class='delete-comment' data-id="<%=card.id%>"> Delete </button>
+
+  <% })%>
 
   </ul>
-
+  <a href="#" class="add-card" id="<%=list.id%>">Add a new Card</a>
 
   </li>

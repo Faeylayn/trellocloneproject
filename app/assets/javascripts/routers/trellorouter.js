@@ -55,9 +55,7 @@ TrelloClone.Router = Backbone.Router.extend({
     this._listNew.render();
   },
 
-  cardNew: function () {
 
-  },
 
   _SwapView: function (newView) {
     if (this.currentView) {
